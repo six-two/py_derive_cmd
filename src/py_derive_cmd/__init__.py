@@ -1,10 +1,10 @@
 from typing import List, Tuple, Callable, Sequence, Optional
 import cmd
 # Local
-from arguments import ArgParser
-from settings import Settings
-from command import CommandInfo
-from complete import GenericOption, OptionList, BoolOption, UsageException
+from .complete import GenericOption, OptionList, BoolOption, UsageException
+from .arguments import ArgParser
+from .settings import Settings
+from .command import CommandInfo
 
 
 # TODO add a list that stores all commands
@@ -19,7 +19,7 @@ def make_command(settings: Settings, short_description: str, aliases: Sequence[s
             names = list(aliases)
         else:
             names = [_name, *aliases]
-        CommandInfo(fn, names, short_description, raw_arg=raw_arg).register()
+        CommandInfo(settings, fn, names, short_description, raw_arg=raw_arg).register()
         return fn
     return decorator_make_command
 

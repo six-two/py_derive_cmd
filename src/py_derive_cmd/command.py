@@ -4,7 +4,6 @@ from collections import OrderedDict
 # Local
 from .settings import Settings
 from .common import pluralize, remove_duplicates
-from .create_methods import create_complete_command, create_do_command, create_help_method
 
 def arg_counts(params: Sequence[Parameter]) -> Tuple[int, int]:
     max_args = len(params)
@@ -62,6 +61,8 @@ class CommandInfo:
         return self.names[1:]
 
     def register(self, create_do: bool = True, create_complete: bool = True, create_help: bool = True) -> None:
+        # Prevent circular import
+        from .create_methods import create_complete_command, create_do_command, create_help_method
         settings = self.settings
 
         if create_do:

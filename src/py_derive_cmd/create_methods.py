@@ -1,7 +1,7 @@
 from typing import List, Sequence, Callable
 import cmd
 # Local
-from .command_info import CommandInfo
+from .command import CommandInfo
 from .common import pluralize
 from .complete import UsageException
 
