@@ -4,7 +4,7 @@ with open("README.md", "r") as f:
     long_description = f.read()
 
 setuptools.setup(
-    name="py_derive_cmd-TODO-YOUR-USERNAME-HERE", # Replace with your own username
+    name="py_derive_cmd", # py_derive_cmd-TODO-YOUR-USERNAME-HERE
     version="0.0.1",
     author="six-two",
     author_email="info@six-two.dev",
