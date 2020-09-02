@@ -62,8 +62,12 @@ class CommandInfo:
 
     def register(self, create_do: bool = True, create_complete: bool = True, create_help: bool = True) -> None:
         # Prevent circular import
+        if not (create_do or create_complete or create_help):
+            raise Exception('All create_xxx flags are False')
+
         from .create_methods import create_complete_command, create_do_command, create_help_method
         settings = self.settings
+        settings.registered_commands.append(self)
 
         if create_do:
             for name in self.names:

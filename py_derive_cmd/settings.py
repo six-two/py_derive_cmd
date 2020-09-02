@@ -1,4 +1,4 @@
-from typing import Any, Callable
+from typing import Any, Callable, List
 import cmd
 import traceback
 import functools
@@ -18,6 +18,8 @@ class Settings:
         self.split_command_line = None
         self.format_string_required_argument = '<{}>'
         self.format_string_optional_argument = '[{}]'
+        from .command import CommandInfo
+        self.registered_commands: List[CommandInfo] = []
 
     def make_box_message(self, title: str, message: str, line_length: int = 80, fillchar: str = '=') -> str:
         header = f' {title} '.center(line_length, '=')

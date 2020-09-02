@@ -7,8 +7,6 @@ from .settings import Settings
 from .command import CommandInfo
 
 
-# TODO add a list that stores all commands
-
 def make_command(settings: Settings, short_description: str, aliases: Sequence[str] = [],
                  name: Optional[str] = None, raw_arg: bool = False) -> Callable:
     '''This decorator does not actually modify the function, it just adds it to the given "cls".'''
