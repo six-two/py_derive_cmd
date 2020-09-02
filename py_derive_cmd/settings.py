@@ -1,10 +1,12 @@
-from typing import Any, Callable, List
+from typing import Any, Callable, List, TYPE_CHECKING
 import cmd
 import traceback
 import functools
 from inspect import Parameter
 # Local
 from .arguments import ArgParser
+if TYPE_CHECKING:
+    from .command import CommandInfo
 
 class Settings:
     '''By modifying this class you can change the default behaviour and settings of this package.
@@ -53,15 +55,15 @@ class Settings:
         else:
             setattr(self.cmd_class, name, value)
 
-    def print_exceptions(self, fn: Callable) -> Callable:
+    def handle_exceptions(self, command: 'CommandInfo', function_that_might_fail: Callable) -> Callable:
         '''
         A wrapper method (decorator) that should catch all exceptions and log / print them.
         It is used for created do_command and complete_command functions
         '''
-        @functools.wraps(fn)
+        @functools.wraps(function_that_might_fail)
         def wrapper_print_exceptions(*args, **kwargs):
             try:
-                return fn(*args, **kwargs)
+                return function_that_might_fail(*args, **kwargs)
             except Exception:
                 self.print_error(self.make_box_message('Internal error', traceback.format_exc()))
         return wrapper_print_exceptions

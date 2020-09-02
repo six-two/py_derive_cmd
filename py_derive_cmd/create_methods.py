@@ -30,7 +30,7 @@ def create_do_command(command: CommandInfo, name: str) -> Callable:
                 print(f'Usage: {name} {command.usage_params}')
                 return False
 
-    return settings.print_exceptions(wrapper_do_command)
+    return settings.handle_exceptions(command, wrapper_do_command)
 
 def create_help_method(command: CommandInfo) -> Callable:
     def wrapper_help_method(self_of_cmd: cmd.Cmd):
@@ -41,7 +41,7 @@ def create_help_method(command: CommandInfo) -> Callable:
         if command.full_description:
             print('\n' + command.full_description)
 
-    return command.settings.print_exceptions(wrapper_help_method)
+    return command.settings.handle_exceptions(command, wrapper_help_method)
 
 def create_complete_command(command: CommandInfo) -> Callable:
     settings = command.settings
@@ -70,4 +70,4 @@ def create_complete_command(command: CommandInfo) -> Callable:
             # Complete function is probably not defined
             return []
 
-    return settings.print_exceptions(wrapper_complete_command)
+    return settings.handle_exceptions(command, wrapper_complete_command)
