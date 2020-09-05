@@ -3,8 +3,10 @@ import setuptools
 with open("README.md", "r") as f:
     long_description = f.read()
 
+PACKAGE = "py_derive_cmd"
+
 setuptools.setup(
-    name="py_derive_cmd", # py_derive_cmd-TODO-YOUR-USERNAME-HERE
+    name=PACKAGE, # py_derive_cmd-TODO-YOUR-USERNAME-HERE
     version="0.0.1",
     author="six-two",
     author_email="info@six-two.dev",
@@ -12,7 +14,10 @@ setuptools.setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/six-two/py_derive_cmd",
-    packages=setuptools.find_packages(),
+    packages=[PACKAGE],
+    package_data={PACKAGE: ["py.typed"]},
+    zip_save=False,
+
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
