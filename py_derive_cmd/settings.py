@@ -1,4 +1,4 @@
-from typing import Any, Callable, List, TYPE_CHECKING
+from typing import Any, Callable, List, Type, TYPE_CHECKING
 import cmd
 import traceback
 import functools
@@ -13,7 +13,7 @@ class Settings:
     You can also hook yourself into any of the methods here
     '''
 
-    def __init__(self, cmd_class: cmd.Cmd, arg_parser: ArgParser = None, print_warnings: bool = True) -> None:
+    def __init__(self, cmd_class: Type[cmd.Cmd], arg_parser: ArgParser = None, print_warnings: bool = True) -> None:
         self.cmd_class = cmd_class
         self.arg_parser = ArgParser() if arg_parser is None else arg_parser
         self.print_warnings = print_warnings

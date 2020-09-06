@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # pylint: disable=unused-wildcard-import
-from src.py_derive_cmd import *
+from py_derive_cmd import *
 import cmd
 
 class MyCmd(cmd.Cmd):

@@ -1,7 +1,6 @@
 from typing import List, Tuple, Callable, Sequence, Optional
-import cmd
 # Local
-from .complete import GenericOption, OptionList, BoolOption, UsageException
+from .complete import GenericOption, OptionList, BoolOption, UsageException, complete_path
 from .arguments import ArgParser
 from .settings import Settings
 from .command import CommandInfo
